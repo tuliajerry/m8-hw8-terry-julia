@@ -1,12 +1,12 @@
 :root {
-  --primary-color: #06b3bc;
+  --primary-color: #283618;
   --text-color: #042d2f;
   --text-color-lighter: #074c50;
-  --secondary-color: #F78828;
+  --secondary-color: #606c38;
   --warn-color: #FDD219;
-  --danger-color: #FA5456;
+  --danger-color: #bc6c25;
   --white: #FFFFFF;
-  --off-white: #F1F2F4;
+  --off-white: #fefae0;
   --gray: #A1A1A1;
 }
 
@@ -39,12 +39,40 @@ header {
 header a {
   font-size: 1.5rem;
   color: var(--off-white);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+header a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--secondary-color);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+header a:hover {
+  color: var(--secondary-color);
+}
+
+header a:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
 }
 /* end header link animations */
 
 /* article link transitions */
 main a {
   color: var(--danger-color);
+  transition: color 0.3s ease; 
+}
+main a:hover {
+  color: var(--secondary-color); 
 }
 /* end article link transitions */
 
@@ -92,14 +120,20 @@ section.hero > .call-to-action {
   padding: 0 48px;
   margin: 0;
 }
-
+@keyframes multicolor {
+  0% { background-color: #bc6c25; }
+  25% { background-color: #dda15e; }
+  50% { background-color: #fefae0; }
+  75% { background-color: #283618; }
+  100% { background-color: #606c38; }
+}
 section.hero > button {
-  background-color: var(--secondary-color);
   border: none;
   padding: 12px 24px;
   border-radius: 12px;
   text-transform: uppercase;
   cursor: pointer;
+  animation: multicolor 5s linear infinite;
 }
 
 main article {
